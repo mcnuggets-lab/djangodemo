@@ -1,8 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+    <meta name="author" content="McNuggets-Lab">
 
-<title>{{ question.question_text }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+<title>Do you like Mathematics?</title>
+
+</head>
+<body>
+
 
 {% if latest_question_list %}
 <ul>
@@ -13,3 +24,6 @@
 {% else %}
 <p>No polls are available.</p>
 {% endif %}
+
+</body>
+</html>
