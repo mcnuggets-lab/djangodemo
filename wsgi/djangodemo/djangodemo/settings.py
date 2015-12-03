@@ -1,5 +1,5 @@
 """
-Django settings for django-demo project.
+Django settings for djangodemo project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.8/topics/settings/
@@ -28,7 +28,7 @@ SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 SECRET_KEY = SECRETS['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') == 'True'
+DEBUG = 'True'
 
 # ADMIN = 'admin'
 # ADMIN PW = 'openshiftadmin'
@@ -63,8 +63,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-# GETTING-STARTED: change 'django-demo' to your project name:
-ROOT_URLCONF = 'django-demo.urls'
+# GETTING-STARTED: change 'djangodemo' to your project name:
+ROOT_URLCONF = 'djangodemo.urls'
 
 TEMPLATES = [
     {
@@ -82,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django-demo.wsgi.application'
+WSGI_APPLICATION = 'djangodemo.wsgi.application'
 
 
 # Database
