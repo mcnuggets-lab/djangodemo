@@ -64,7 +64,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-# GETTING-STARTED: change 'djangodemo' to your project name:
+# GETTING-STARTED: change 'myproject' to your project name:
 ROOT_URLCONF = 'djangodemo.urls'
 
 TEMPLATES = [
