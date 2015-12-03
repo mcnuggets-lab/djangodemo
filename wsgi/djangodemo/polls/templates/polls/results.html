@@ -1,11 +1,97 @@
-<h1>{{ question.question_text }}</h1>
-
-<ul>
-    {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-    {% endfor %}
-</ul>
-
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<!DOCTYPE html>
 
 
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta name="author" content="McNuggets-Lab">
+
+    <title>Result</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", { packages: ["corechart"] });
+    </script>
+
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/2.2.0/math.min.js"></script>-->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                <h1>Result:</h1>
+
+                <!--<h1>{{ question.question_text }}</h1>
+
+                <ul>
+                    {% for choice in question.choice_set.all %}
+                    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+                    {% endfor %}
+                </ul>-->
+                <div id="chart_div" style="height:500px; width:500px;"></div>
+                <br />
+                <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        "use strict"
+        
+
+        var data = google.visualization.arrayToDataTable([
+            ['Choice', 'votes'],
+            {% for choice in question.choice_set.all %}
+                ["{{ choice.choice_text }}", {{ choice.votes }}],
+            {% endfor %}
+                ]);
+
+        function decodeEntities(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+        }
+
+        var title = decodeEntities("{{ question.question_text }}");
+
+        var options = {
+            title: title,
+            legend: { position: 'none' },
+            bar: { groupWidth: '61.8%' },
+            chartArea: { width: '80%', height: '80%', backgroundColor: { stroke: '#000', strokeWidth: 1 } },
+            vAxis: { viewWindow: { min: 0 } },
+            animation: { startup: true, easing: 'in', duration: 1000 },
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
