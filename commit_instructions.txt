@@ -1,3 +1,5 @@
+;open Git Bash
+
 git add .
 git commit -m '(message)'
 git push
