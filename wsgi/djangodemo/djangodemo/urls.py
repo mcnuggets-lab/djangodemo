@@ -20,6 +20,6 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     url(r'^polls/', include('polls.urls', namespace='polls')),
     url(r'^admin/', include(admin.site.urls)),
-		url(r'^$', RedirectView.as_view(url='/static/')),
+	url(r'^$', RedirectView.as_view(url='/static/')),
     #url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon.ico'))
 ]
